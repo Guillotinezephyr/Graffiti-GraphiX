@@ -28,7 +28,7 @@ const Navbar = () => {
     <div className={classes.container}>
       <div className={classes.wrapper}>
         <Link to={"/"} onClick={handleCloseCart} className={classes.left}>
-          <h1 className={classes.title}>WebDevMania</h1>
+          <h1 className={classes.title}>Graffiti GraphiX</h1>
         </Link>
         <div className={classes.right}>
          {user?.type === "admin"?(

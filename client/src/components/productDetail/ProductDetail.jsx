@@ -3,7 +3,7 @@ import classes from "./productDetail.module.css";
 import { BsCartFill } from "react-icons/bs";
 import { useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
-import { GiScales } from "react-icons/gi";
+// import { GiScales } from "react-icons/gi";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/cartSlice";
 import { useParams } from "react-router-dom";
@@ -111,13 +111,13 @@ const ProductDetail = () => {
           </div>
           <div className={classes.additionalInfo}>
             <hr />
-            <p>Materials and maintenaince</p>
+            {/* <p>Materials and maintenaince</p>
             <hr />
             <p>What is the product about</p>
             <hr />
             <p>Help and Contacts</p>
             <hr />
-            <p>FAQ</p>
+            <p>FAQ</p> */}
           </div>
         </div>
       </div>

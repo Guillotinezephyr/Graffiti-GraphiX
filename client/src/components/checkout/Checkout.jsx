@@ -16,7 +16,7 @@ const Checkout = () => {
 
   const handleOrder = async () => {
     try {
-      const response = await axios.post('/api/orders/create', {
+      const response = await axios.post('http://localhost:5000/controllers/orderControlller', {
         products: products, // Assuming you have an array of products
         address: address,
       });
@@ -57,7 +57,7 @@ const Checkout = () => {
                 <div className={classes.priceAndTitle}>
                   <p className={classes.productTitle}>{product.title}</p>
                   <span className={classes.price}>
-                    {product.quantity} x <span>$</span> {product.price}
+                    {product.quantity} x <span>₹</span> {product.price}
                   </span>
                 </div>
               </div>
@@ -65,16 +65,13 @@ const Checkout = () => {
           </div>
           <span className={classes.totalPriceMsg}>
             Total price of products:{" "}
-            <div className={classes.totalPrice}>${totalPriceProducts()}</div>
+            <div className={classes.totalPrice}>₹{totalPriceProducts()}</div>
           </span>
         </div>
-        {/* Merge the Link and button functionality */}
-        <Link to="/final" className={classes.orderBtn}>
-          Order
-          <button onClick={handleOrder} className={classes.hiddenButton}>
-            Order
-          </button>
-        </Link>
+        <button onClick={handleOrder} className={classes.orderBtn}>
+         Order
+         </button>
+
       </div>
     </div>
   );

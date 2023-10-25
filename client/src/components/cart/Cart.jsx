@@ -51,7 +51,7 @@ const Cart = () => {
                   <div className={classes.priceAndTitle}>
                     <p className={classes.productTitle}>{product.title}</p>
                     <span className={classes.price}>
-                      {product.quantity} x <span>$</span> {product.price}
+                      {product.quantity} x <span>₹</span> {product.price}
                     </span>
                   </div>
                     <BsFillTrashFill
@@ -67,7 +67,7 @@ const Cart = () => {
             <div className={classes.subtotal}>
               <span>Subtotal</span>
               <span className={classes.totalPrice}>
-                <span>$</span> {Number(total).toFixed(2)}
+                <span>₹</span> {Number(total).toFixed(2)}
               </span>
             </div>
             <Link to="/addressDetails" onClick={handleCloseCart} className={classes.checkoutBtn}>Proceed to checkout</Link>

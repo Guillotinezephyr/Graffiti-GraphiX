@@ -47,9 +47,9 @@ const AddressPage = () => {
           />
           <input
             onChange={handleState}
-            name="province"
+            name="State"
             type="text"
-            placeholder="Province..."
+            placeholder="State..."
           />
           <input
             onChange={handleState}
