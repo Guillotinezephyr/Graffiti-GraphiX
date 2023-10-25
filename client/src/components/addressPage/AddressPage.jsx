@@ -1,14 +1,21 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { submitAddress } from "../../redux/addressSlice";
 import classes from "./addressPage.module.css";
 
 const AddressPage = () => {
-  const [addressData, setAddressData] = useState({});
+  const [addressData, setAddressData] = useState({
+    country: "",
+    state: "",
+    city: "",
+    email: "",
+    phoneNumber: "",
+  });
   const [errorMsg, setErrorMsg] = useState(false);
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   const handleState = (e) => {
@@ -47,7 +54,7 @@ const AddressPage = () => {
           />
           <input
             onChange={handleState}
-            name="State"
+            name="state"
             type="text"
             placeholder="State..."
           />
@@ -61,11 +68,12 @@ const AddressPage = () => {
             onChange={handleState}
             name="email"
             type="email"
+            value={user?.email}
             placeholder="Email..."
           />
           <input
             onChange={handleState}
-            name="phone number"
+            name="phoneNumber"
             type="tel"
             placeholder="Phone number..."
           />

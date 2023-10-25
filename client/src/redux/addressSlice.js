@@ -1,7 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    address: {},
+    address: {
+      country: "",
+      state: "",
+      city: "",
+      phoneNumber: "",
+    },
 }
 
 export const addressSlice = createSlice({

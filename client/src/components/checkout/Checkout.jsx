@@ -1,12 +1,20 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import classes from "./checkout.module.css";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import {
+  emptyCart,
+} from "../../redux/cartSlice";
 
 const Checkout = () => {
   const { address } = useSelector((state) => state.address);
   const { products } = useSelector((state) => state.cart);
+  const { user } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+
 
   function totalPriceProducts() {
     let totalPrice = 0;
@@ -16,15 +24,33 @@ const Checkout = () => {
 
   const handleOrder = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/controllers/orderControlller', {
-        products: products, // Assuming you have an array of products
-        address: address,
+      console.log(user._id)
+      console.log(address)
+      const response = await fetch(`http://localhost:5000/orders/create-order`, {
+     
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id: user._id,
+          products: products,
+          orderPrice: totalPriceProducts(),
+          address: address,
+        }),
       });
+      if(response.status === 201){
+        console.log("Order placed successfully!");
+        dispatch(emptyCart());
+        navigate("/final");
+
+      }
       // Handle success (e.g., show a success message)
       console.log('Order placed successfully!', response.data);
     } catch (error) {
       // Handle errors (e.g., show an error message)
       console.error('Failed to place the order', error);
+      alert("Failed to place the order");
     }
   };
 
